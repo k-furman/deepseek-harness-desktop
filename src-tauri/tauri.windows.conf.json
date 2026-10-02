@@ -1,0 +1,15 @@
+{
+  "bundle": {
+    "targets": ["nsis", "msi"],
+    "windows": {
+      "webviewInstallMode": { "type": "embedBootstrapper", "silent": true },
+      "minimumWebview2Version": "110.0.1531.0",
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["English", "Russian"],
+        "displayLanguageSelector": true
+      },
+      "wix": { "language": "en-US" }
+    }
+  }
+}

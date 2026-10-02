@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "preferences",
+  "description": "The bundled settings window can read preferences, select an available language and close itself.",
+  "windows": ["preferences"],
+  "permissions": [
+    "core:event:allow-listen", "core:event:allow-unlisten",
+    "allow-get-preferences", "allow-set-language", "allow-close-preferences"
+  ]
+}

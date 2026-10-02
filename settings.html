@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>DeepSeek Harness Desktop</title>
+  </head>
+  <body class="preferences-body">
+    <main class="preferences">
+      <h1 data-i18n="settings">Settings</h1>
+      <label for="language" data-i18n="language">Language</label>
+      <select id="language" aria-describedby="language-hint preference-status" disabled>
+        <option value="system">System language</option>
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+      </select>
+      <p id="language-hint" class="hint" data-i18n="languageHint">Changes apply immediately. The system option uses English when its language is unavailable.</p>
+      <div id="preference-status" class="status" role="status" aria-live="polite" aria-atomic="true">Preparing the application…</div>
+      <div class="preference-actions"><button id="close-preferences" class="secondary" type="button" data-i18n="close">Close</button></div>
+    </main>
+    <script type="module" src="/src/preferences.ts"></script>
+  </body>
+</html>

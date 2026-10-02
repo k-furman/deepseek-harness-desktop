@@ -1,0 +1,38 @@
+{
+  "name": "deepseek-harness-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests vite.config.ts",
+    "test": "vitest run",
+    "check": "npm run lint && npm run test && npm run build",
+    "tauri": "node scripts/with-rust.mjs tauri",
+    "desktop:dev": "npm run tauri -- dev",
+    "desktop:build": "npm run tauri -- build",
+    "icons": "node scripts/generate-icons.mjs",
+    "size": "node scripts/measure-build.mjs",
+    "native:check": "node scripts/with-rust.mjs check",
+    "audit": "node scripts/with-python.mjs scripts/ci/tauri-audit/audit_tauri_project.py .",
+    "fixture": "node scripts/with-python.mjs tests/fixture_server.py",
+    "ci:check": "node scripts/with-python.mjs scripts/ci/release.py versions && node scripts/with-python.mjs -m unittest discover -s tests -p test_release.py -v && node scripts/with-python.mjs -m unittest discover -s scripts/ci/tauri-audit -p test_*.py -v && npm run audit && npm run check",
+    "ci:workflows": "node scripts/with-python.mjs scripts/ci/lint-workflows.py",
+    "windows:build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ci/build-windows.ps1",
+    "linux:build": "bash scripts/build-linux.sh"
+  },
+  "dependencies": { "@tauri-apps/api": "2.12.1" },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.1",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.1",
+    "globals": "^16.5.0",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.46.0",
+    "vite": "8.3.2",
+    "vitest": "5.0.3",
+    "jsdom": "^27.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>DeepSeek Harness Desktop</title>
+  </head>
+  <body>
+    <main class="connection">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 18h-6v28h6M46 18h6v28h-6M24 26l-6 6 6 6M40 26l6 6-6 6M36 19l-8 26" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h1>DeepSeek Harness</h1>
+      <p class="intro" data-i18n="intro">Connect to your server to continue working.</p>
+      <form id="connect-form">
+        <label for="server-url" data-i18n="serverAddress">Server address</label>
+        <input id="server-url" name="server-url" type="text" placeholder="localhost:3000" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="address-hint status" maxlength="8192" required disabled />
+        <p id="address-hint" class="hint" data-i18n="addressHint">If the server gave you a link with a token, paste the entire link.</p>
+        <div class="actions"><button id="connect" type="submit" disabled>Connect</button><button id="cancel" type="button" class="secondary" data-i18n="cancel" hidden>Cancel</button></div>
+      </form>
+      <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Preparing the application…</div>
+      <div class="footer-row"><p class="footer" data-i18n="footer">The address will be remembered for your next launch.</p><button id="settings" class="text-button" type="button" data-i18n="settings">Settings</button></div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

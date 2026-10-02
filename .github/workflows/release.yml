@@ -1,0 +1,44 @@
+name: Draft release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      release_tag: ${{ github.ref_name }}
+
+  draft:
+    name: Create verified draft
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: packages-*
+          path: artifacts/release
+          merge-multiple: true
+      - name: Validate packages and commit before using the write token
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python3 scripts/ci/release.py verify --directory artifacts/release --tag "$RELEASE_TAG" --commit "$GITHUB_SHA"
+      - name: Create or update a draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python3 scripts/ci/draft-release.py
