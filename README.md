@@ -2,15 +2,28 @@
 
 **English** · [Русский](README.ru.md)
 
-A desktop client for an existing DeepSeek Harness server. It opens the server's
+A desktop client for local and remote DeepSeek Harness sessions. Connect to a
+server running on your computer or on a remote machine. The app opens the server's
 web interface in its own window and adds native menus on macOS, Linux and Windows.
 The application shell stays within the window: messages and lists scroll inside
 their panels while the surrounding interface stays in place.
 
+## Screenshots
+
+**Connection screen on macOS**
+
+![DeepSeek Harness Desktop connection screen on macOS](assets/screenshots/connection-macos.png)
+
+**Harness session with a page preview on macOS**
+
+![DeepSeek Harness Desktop session with chat and a page preview on macOS](assets/screenshots/session-macos.png)
+
 ## Connecting
 
-1. Start the DeepSeek Harness container and expose its web port on the host.
-2. Open the app and enter the server address, such as `localhost:3000`.
+1. Start DeepSeek Harness locally or on a remote machine, or use an existing
+   server. If it runs in a container, expose its web port on the host.
+2. Open the app and enter the server address: for example, `localhost:3000` for a
+   local server or `https://harness.example.com` for a remote server.
 3. If the server requires authentication, paste the full link containing `?token=…`
    that it provided at startup. Click **Connect**.
 
@@ -73,8 +86,8 @@ npm run desktop:build
 ```
 
 macOS `.app`/`.dmg`, Linux `.deb`/`.AppImage` and Windows `.exe`/`.msi` bundles are
-written to `src-tauri/target/release/bundle/`. The first version is intended for
-local use; macOS builds use ad-hoc signing. Apple Developer ID signing,
+written to `src-tauri/target/release/bundle/`. macOS builds use ad-hoc signing.
+Apple Developer ID signing,
 notarization and automatic updates are not configured.
 Windows packages do not have Authenticode signatures yet.
 Packages and diagnostic files are generated locally or in GitHub Actions and
